@@ -53,7 +53,7 @@ test_set = test_datagen.flow_from_directory('data/test',
                                             class_mode='categorical')
 classifier.fit(
     training_set,
-    steps_per_epoch=600,  # Numero de imagens de training_set
+    steps_per_epoch=20,  # Numero de imagens de training_set
     epochs=10,
     validation_data=test_set,
     validation_steps=30)  # Numero de imagens da data_set
@@ -61,6 +61,6 @@ classifier.fit(
 
 # Salvando o modelo compilado da CNN em disco.
 model_json = classifier.to_json()
-with open("model/model-bw.json", "w") as json_file:
+with open("model/model.json", "w") as json_file:
     json_file.write(model_json)
-classifier.save_weights('model/model-bw.h5')
+classifier.save_weights('model/model.h5')
