@@ -1,4 +1,3 @@
-# Importing the Keras libraries and packages
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Convolution2D
@@ -6,24 +5,23 @@ from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
 
-# Step 1 - Building the CNN
-
-# Initializing the CNN
+# Inicializando a CNN
 classifier = Sequential()
 
-# First convolution layer and pooling
+# Adicionando uma camada de convolução 2d para representar as imagens, com um kernel 3.
+# A função ativadora é a Rectified Linear Activation.
+# Nosso input_shape são imagens 64x64 com o 1 indicando que estão em grayscale.
 classifier.add(Convolution2D(
     32, (3, 3), input_shape=(64, 64, 1), activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
-# Second convolution layer and pooling
+# Acrescentando uma segunda camada, seguindo o input_shape da anterior
 classifier.add(Convolution2D(32, (3, 3), activation='relu'))
-# input_shape is going to be the pooled feature maps from the previous convolution layer
 classifier.add(MaxPooling2D(pool_size=(2, 2)))
 
-# Flattening the layers
+# O método Flatten enfileira as imagens na dimensão de sua largura e altura, ou seja, uma camada de 64*64
 classifier.add(Flatten())
 
-# Adding a fully connected layer
+# Conectando as camadas, uma com 128 neurônios e outra com 6.
 classifier.add(Dense(units=128, activation='relu'))
 classifier.add(Dense(units=6, activation='softmax'))  # softmax for more than 2
 
@@ -49,6 +47,8 @@ training_set = train_datagen.flow_from_directory('data/train',
                                                  batch_size=5,
                                                  color_mode='grayscale',
                                                  class_mode='categorical')
+print(training_set)
+
 
 test_set = test_datagen.flow_from_directory('data/test',
                                             target_size=(64, 64),
