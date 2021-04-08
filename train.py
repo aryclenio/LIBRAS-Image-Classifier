@@ -23,16 +23,12 @@ classifier.add(Flatten())
 
 # Conectando as camadas, uma com 128 neurônios e outra com 6.
 classifier.add(Dense(units=128, activation='relu'))
-classifier.add(Dense(units=6, activation='softmax'))  # softmax for more than 2
-
-# Compiling the CNN
+classifier.add(Dense(units=6, activation='softmax'))
 classifier.compile(optimizer='adam', loss='categorical_crossentropy', metrics=[
-                   'accuracy'])  # categorical_crossentropy for more than 2
+                   'accuracy'])
 
 
-# Step 2 - Preparing the train/test data and training the model
-
-# Code copied from - https://keras.io/preprocessing/image/
+# Carregando a test e train set na CNN
 
 train_datagen = ImageDataGenerator(
     rescale=1./255,
@@ -57,13 +53,13 @@ test_set = test_datagen.flow_from_directory('data/test',
                                             class_mode='categorical')
 classifier.fit(
     training_set,
-    steps_per_epoch=600,  # No of images in training set
+    steps_per_epoch=600,  # Numero de imagens de training_set
     epochs=10,
     validation_data=test_set,
-    validation_steps=30)  # No of images in test set
+    validation_steps=30)  # Numero de imagens da data_set
 
 
-# Saving the model
+# Salvando o modelo compilado da CNN em disco.
 model_json = classifier.to_json()
 with open("model/model-bw.json", "w") as json_file:
     json_file.write(model_json)
