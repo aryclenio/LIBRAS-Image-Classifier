@@ -5,6 +5,12 @@ A Convolutional Neural Network was used in order to train and test a network so 
 
 ![libras](https://user-images.githubusercontent.com/31252524/114275902-abe94f80-99fa-11eb-9cfe-fe2cf75269f9.gif)
 
+## Data prediction
+
+In order to teach the neural network, we obtain image captures of the hand signal with the webcam inported in grayscale on the /data folter. There are a total of 1200 images, 200 of each signal.
+
+![image](https://user-images.githubusercontent.com/31252524/114276105-99234a80-99fb-11eb-9fb9-2e9fd3801dd7.png)
+
 ## Technologies used
 
 - Keras
