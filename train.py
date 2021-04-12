@@ -38,13 +38,14 @@ train_datagen = ImageDataGenerator(
 
 test_datagen = ImageDataGenerator(rescale=1./255)
 
+# Amostragem de imagens de treinamento em 80%
 training_set = train_datagen.flow_from_directory('data/train',
                                                  target_size=(64, 64),
                                                  batch_size=5,
                                                  color_mode='grayscale',
                                                  class_mode='categorical')
-print(training_set)
 
+# Amostragem de imagens de treinamento em 20%
 
 test_set = test_datagen.flow_from_directory('data/test',
                                             target_size=(64, 64),
@@ -53,10 +54,10 @@ test_set = test_datagen.flow_from_directory('data/test',
                                             class_mode='categorical')
 classifier.fit(
     training_set,
-    steps_per_epoch=20,  # Numero de imagens de training_set
+    steps_per_epoch=200,  # Numero de imagens de training_set
     epochs=10,
     validation_data=test_set,
-    validation_steps=30)  # Numero de imagens da data_set
+    validation_steps=300)  # Numero de imagens da data_set
 
 
 # Salvando o modelo compilado da CNN em disco.

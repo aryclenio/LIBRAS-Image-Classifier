@@ -49,13 +49,14 @@ while True:
                   'D': result[0][3],
                   'E': result[0][4],
                   'F': result[0][5]}
+    print(prediction)
+
     # Sorting based on top prediction
     prediction = sorted(prediction.items(),
                         key=operator.itemgetter(1), reverse=True)
-
     # Displaying the predictions
     cv2.putText(frame, prediction[0][0], (10, 120),
-                cv2.FONT_HERSHEY_PLAIN, 1, (0, 255, 255), 1)
+                cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 255), 3)
     cv2.imshow("Frame", frame)
 
     interrupt = cv2.waitKey(10)

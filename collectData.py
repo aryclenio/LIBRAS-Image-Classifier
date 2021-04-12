@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 # Seleção de modo
-mode = 'train'
+mode = 'TEST'
 directory = 'data/'+mode+'/'
 
 cap = cv2.VideoCapture(0)
